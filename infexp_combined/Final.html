@@ -1,0 +1,22 @@
+{{ block title }}
+
+{{ endblock }}
+
+
+{{ block content }}
+Thank you for completing this questionnaire!
+
+Please click here for your completion code:
+
+<script>
+    let completionlink = js_vars.completionlink;
+
+    window.onload = function(){
+        window.location.href=completionlink;
+    }
+</script>
+
+
+    {{ next_button }}
+
+{{ endblock }}

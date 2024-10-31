@@ -1,0 +1,29 @@
+{{ block title }}
+    Inflation Expectations
+{{ endblock }}
+
+{{ block content }}
+<p> In your opinion, what is the minimum rate of inflation over the next twelve months for which you think that there is absolutely no chance the true rate of inflation will be lower? </p>
+<p> Note: The aim of this question is to determine the absolute lowest possible rate of inflation (or negative numbers if you expect deflation) that you would consider realistic over the next twelve months. </p>
+
+<div>
+    <!-- Pre-fill the min_expectation field with the player's existing value -->
+    <input type="number" id="1" name="min_expectation" step="0.1" min="-101" max="101" value="{{ player.min_expectation }}">
+    <label for="1"> % </label>
+</div>
+<br>
+
+<p> In your opinion, what is the maximum rate of inflation over the next twelve months for which you think that there is absolutely no chance the true rate of inflation will be higher? </p>
+<p> Note: The aim of this question is to determine the absolute highest possible rate of inflation (or negative numbers if you expect deflation) that you would consider realistic over the next twelve months. </p>
+
+<div>
+    <!-- Pre-fill the max_expectation field with the player's existing value -->
+    <input type="number" id="2" name="max_expectation" step="0.1" min="-101" max="101" value="{{ player.max_expectation }}">
+    <label for="2"> % </label>
+</div>
+<br>
+<br>
+
+{{ next_button }}
+
+{{ endblock }}

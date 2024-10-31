@@ -1,0 +1,112 @@
+{{ block title }}
+    Inflation Expectations
+{{ endblock }}
+
+{{ block styles }}
+<style>
+img {
+    position: absolute;
+    right:2%;
+    top:2%;
+    image-rendering:-webkit-optimize-contrast;
+    max-width: 100%;
+    display: block;
+    height: auto;
+}
+
+.otree-body {
+    min-width: 70%;
+}
+
+th, td {
+    text-align: left;
+    padding: 3px;
+}
+
+.alert-inline {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-left: 3px;
+    margin-right: 3px;
+    margin-bottom: 0;
+}
+
+.col-form-label {
+    display: none;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.mb-3 {
+    margin-bottom: 0 !important;
+}
+
+.form-control {
+    text-align: right;
+}
+
+.otree-timer {
+    display: none;
+}
+</style>
+{{ endblock }}
+
+{{ block content }}
+
+    <div class="card">
+        <div class="card-body">
+            We would like you to think about the different things that may happen to inflation over the next 12
+            months.
+            <br><br>
+            In your view, what would you say is the percent chance that, over the next 12 months...
+            <br><br>
+            <table>
+                {{ for label, field in combined }}
+                    <tr>
+                        <th style="border-bottom: 1px solid gray;">{{ label }}&emsp;&emsp;</th>
+                        <th style="border-bottom: 1px solid gray;">{{ formfield field label=""}}</th>
+                        <th style="border-bottom: 1px solid gray;">percent chance</th>
+                    </tr>
+                {{ endfor }}
+                    <tr>
+                        <th>Total</th>
+                        <th style="text-align: right;" id="total"></th>
+                        <th>percent chance</th>
+                    </tr>
+            </table>
+        </div>
+    </div>
+    <br>
+    <div class="alert alert-danger" id="no_input_message" role="alert" style="display: None;">
+        Your answers are important to us. Please provide an answer even if you are not sure.
+        Otherwise click <b>Next</b> to continue.
+    </div>
+    {{ next_button }}
+    <input type = "hidden" name = "saw_q1_no_response_error" id = "id_saw_q1_no_response_error">
+{{ endblock }}
+
+{{ block scripts }}
+<script>
+    // Initialize with 0
+    window.onload = function() {
+         document.getElementById('total').innerHTML = '0' + '&nbsp;&nbsp;';
+    };
+    // Running counter of percentages used
+    let bins_t = document.querySelectorAll('[id^=id_q1_org_bin]');
+    let num_bins_t = bins_t.length;
+    for (let i = 0; i < num_bins_t; i++) {
+        bins_t[i].addEventListener("input", function () {
+            let bins_t = document.querySelectorAll('[id^=id_q1_org_bin]');
+            let bins_new_t = [];
+            let bin_sum_t = 0;
+            // Get bin values, check if float (i.e. there was input)
+            bins_t.forEach(function (bin) {
+                let bin_temp_t = parseInt(bin.value.replace(' ', '')) || 0;
+                bins_new_t.push(bin_temp_t);
+                bin_sum_t += (bin_temp_t);
+            });
+            document.getElementById('total').innerHTML = Math.round(bin_sum_t) + '&nbsp;&nbsp;';
+        });
+    }
+</script>
+{{ endblock }}

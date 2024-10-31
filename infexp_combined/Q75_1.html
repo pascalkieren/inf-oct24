@@ -1,0 +1,16 @@
+{{ block title }}
+Round {{counting}}
+{{ endblock }}
+
+{% block content %}
+
+
+<p>Which of the following two scenarios regarding the rate of inflation over the next twelve months do you consider more likely?</p>
+  <input type="radio" id = "1" name="bisection" value="1">
+    <label for="1">{{mid_point}}% to {{midpoint_q75}}%</label> <br>
+  <input type="radio" id = "2" name="bisection" value="0">
+    <label for="2">{{midpoint_q75}}% to {{max_expectation}}%</label> <br>
+
+ {{ next_button }}
+
+{% endblock %}

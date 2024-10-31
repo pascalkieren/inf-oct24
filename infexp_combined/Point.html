@@ -1,0 +1,18 @@
+{{ block title }}
+{{ endblock }}
+
+{{ block content }}
+<p><strong>What do you expect the rate of inflation to be over the next twelve months?</strong></p>
+<p style="font-size: 14px;">Note: Inflation is the percentage increase in the general price level. It is mostly measured using the consumer price index. If you expect the price level to increase, please enter a positive percentage value. If you expect the price level to decrease, please enter a negative percentage value. Please enter a value with a maximum of one decimal place.</p>
+
+<div>
+    <!-- Use number input with step 0.1 for one decimal precision -->
+    <input type="number" id="1" name="pointprog" step="0.1" min="-100" max="100">
+    <label for="1"> % </label>
+    <br>
+    <br>
+</div>
+
+{{ next_button }}
+
+{{ endblock }}

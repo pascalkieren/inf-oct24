@@ -1,0 +1,45 @@
+{% block title %}
+Further Questions
+{% endblock %}
+
+
+
+{% block content %}
+
+<p>Would you agree that it is approximately equally likely that inflation in 12 months is higher or lower than {{ median_check }}%?</p>
+<div>
+    <input type="radio" id="sanity_median_1" name="sanity_median" value="1">
+    <label for="sanity_median_1">Agree</label>
+</div>
+<div>
+    <input type="radio" id="sanity_median_2" name="sanity_median" value="2">
+    <label for="sanity_median_2">Rather higher</label>
+</div>
+<div>
+    <input type="radio" id="sanity_median_3" name="sanity_median" value="3">
+    <label for="sanity_median_3">Rather lower</label>
+</div>
+{{ formfield_errors 'sanity_median' }}
+<br>
+
+<p>Would you agree that the probability of there being deflation over the next 12 months is about {{ median_deflation_check }}%?</p>
+<div>
+    <input type="radio" id="sanity_deflation_1" name="sanity_deflation" value="1">
+    <label for="sanity_deflation_1">Agree</label>
+</div>
+<div>
+    <input type="radio" id="sanity_deflation_2" name="sanity_deflation" value="2">
+    <label for="sanity_deflation_2">Rather higher</label>
+</div>
+<div>
+    <input type="radio" id="sanity_deflation_3" name="sanity_deflation" value="3">
+    <label for="sanity_deflation_3">Rather lower</label>
+</div>
+{{ formfield_errors 'sanity_deflation' }}
+<br>
+
+
+{{ next_button }}
+
+{% endblock %}
+

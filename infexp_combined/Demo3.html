@@ -1,0 +1,110 @@
+{{ block title }}
+Household Finance
+{{ endblock }}
+
+{{ block styles }}
+<style>
+img {
+    position: absolute;
+    right:2%;
+    top:2%;
+    image-rendering:-webkit-optimize-contrast;
+    max-width: 100%;
+    display: block;
+    height: auto;
+}
+
+.otree-body {
+    min-width: 70%;
+}
+
+th, td {
+    text-align: left;
+    padding: 3px;
+}
+
+.alert-inline {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-left: 3px;
+    margin-right: 3px;
+    margin-bottom: 0;
+}
+
+.col-form-label {
+    display: none;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.mb-3 {
+    margin-bottom: 0 !important;
+}
+
+.form-control {
+    text-align: right;
+}
+
+.otree-timer {
+    display: none;
+}
+</style>
+{{ endblock }}
+
+{{ block content }}
+
+    <div class="card">
+        <div class="card-body">
+            In your opinion, how likely is it that your household’s average monthly net income will change as follows over the next twelve months?
+            <br><br>
+Note: The aim of this question is to determine how likely you think it is that something specific will happen in the future. You can rate the likelihood on a scale from 0 to 100, with 0 meaning that an event is completely unlikely and 100 meaning that you are absolutely certain it will happen. Use values between the two extremes to moderate the strength of your opinion. Please note that your answers to the categories have to add up to 100.            <br><br>
+            <table>
+                {{ for label, field in combined }}
+                    <tr>
+                        <th style="border-bottom: 1px solid gray;">{{ label }}&emsp;&emsp;</th>
+                        <th style="border-bottom: 1px solid gray;">{{ formfield field label=""}}</th>
+                        <th style="border-bottom: 1px solid gray;">percent chance</th>
+                    </tr>
+                {{ endfor }}
+                    <tr>
+                        <th>Total</th>
+                        <th style="text-align: right;" id="total_i"></th>
+                        <th>percent chance</th>
+                    </tr>
+            </table>
+        </div>
+    </div>
+    <br>
+    <div class="alert alert-danger" id="no_input_message" role="alert" style="display: None;">
+        Your answers are important to us. Please provide an answer even if you are not sure.
+        Otherwise click <b>Next</b> to continue.
+    </div>
+    {{ next_button }}
+    <input type = "hidden" name = "saw_q3_no_response_error" id = "id_saw_q3_no_response_error">
+{{ endblock }}
+
+{{ block scripts }}
+<script>
+    // Initialize with 0
+    window.onload = function() {
+         document.getElementById('total_i').innerHTML = '0' + '&nbsp;&nbsp;';
+    };
+    // Running counter of percentages used
+    let income_t = document.querySelectorAll('[id^=id_income]');
+    let num_income_t = income_t.length;
+    for (let i = 0; i < num_income_t; i++) {
+        income_t[i].addEventListener("input", function () {
+            let income_t = document.querySelectorAll('[id^=id_income]');
+            let income_new_t = [];
+            let income_sum_t = 0;
+            // Get income values, check if float (i.e. there was input)
+            income_t.forEach(function (income) {
+                let income_temp_t = parseInt(income.value.replace(' ', '')) || 0;
+                income_new_t.push(income_temp_t);
+                income_sum_t += (income_temp_t);
+            });
+            document.getElementById('total_i').innerHTML = Math.round(income_sum_t) + '&nbsp;&nbsp;';
+        });
+    }
+</script>
+{{ endblock }}

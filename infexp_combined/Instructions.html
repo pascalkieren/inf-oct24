@@ -1,0 +1,24 @@
+{{ block title }}
+
+{{ endblock }}
+
+{{ block content }}
+
+    <h2>Welcome to our survey</h2>
+
+    <p>Dear Participant,</p>
+    <p>Thank you for taking the time to complete this survey. Overall, the survey will roughly take 10 minutes to complete. Please make sure that you have the time. Your answers will be treated confidentially and no personal information will be required. All records will be assigned a subject code number for anonymity, and the anonymized data set will be published and available to other researchers. It would be a great help to us if you answer the questions as carefully as possible.</p>
+
+    <p>In this survey, we would like you to assess how the economic situation in your country has changed over time and what you are currently expecting for the future. You do not need any economic background to answer the questionnaire. Most importantly, there are no right or wrong answers, we are simply interested in your personal opinion.</p>
+
+    <p>To navigate through the survey, please only use the “Continue” button at the bottom of the screen. Please do not use the buttons in your browser or the back button on your phone or tablet. During the survey, there is no option to go back to questions previously answered. As such, it is important to read the instructions carefully. There will be questions which check whether you read the instructions.</p>
+
+    <p>Participation in this study is entirely voluntary and you may withdraw at any time. At the end of the survey, you will get a completion code which you need to enter on Prolific. By entering your Prolific ID and clicking the continue button below, you acknowledge that you have read and understood this consent form and agree to participate in the study.</p>
+
+    <form method="POST">
+        {{ formfields }}
+        <br>
+        {{ next_button }}
+    </form>
+
+{{ endblock }}

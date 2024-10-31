@@ -1,0 +1,12 @@
+{{ block title }}
+Please confirm
+{{ endblock }}
+
+{% block content %}
+Your expectation for the minimum possible inflation is {{min_expectation}}%, and your expectation for the maximum possible inflation is {{max_expectation}}%.
+Would you like to continue? By clicking no, you will have the option to return to the prior page and edit your answers.
+
+    {{ formfields }}
+    {{ next_button }}
+
+{% endblock %}
