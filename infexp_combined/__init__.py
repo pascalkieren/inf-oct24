@@ -940,7 +940,6 @@ class Q25_1(Page):
             player.max_expectation_q25 = player.in_round(player.round_number - 1).max_expectation_q25
 
         player.midpoint_q25 = (player.min_expectation_q25 + player.max_expectation_q25) / 2
-        player.final_midpoint_q25 = player.midpoint_q25
         player.range_q25 = player.max_expectation_q25 - player.min_expectation_q25
 
         # Handle the median deflation check
